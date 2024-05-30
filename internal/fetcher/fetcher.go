@@ -29,8 +29,8 @@ type Pair struct {
 }
 
 type LastTradedPrice struct {
-	Pair   string `json:"pair"`
-	Amount string `json:"amount"`
+	Pair   string  `json:"pair"`
+	Amount float64 `json:"amount"`
 }
 
 type PairResults struct {

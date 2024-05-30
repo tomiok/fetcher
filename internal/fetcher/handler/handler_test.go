@@ -42,15 +42,15 @@ func TestHandler_GetPrices(t *testing.T) {
 					Return(fetcher.PairResults{Ltps: []fetcher.LastTradedPrice{
 						{
 							Pair:   "BTC/USD",
-							Amount: "61000",
+							Amount: float64(61000),
 						},
 						{
 							Pair:   "BTC/EUR",
-							Amount: "62000",
+							Amount: float64(62000),
 						},
 					}})
 			},
-			wantBody:   `{"ltp":[{"pair":"BTC/USD","amount":"61000"},{"pair":"BTC/EUR","amount":"62000"}]}`,
+			wantBody:   `{"ltp":[{"pair":"BTC/USD","amount":61000},{"pair":"BTC/EUR","amount":62000}]}`,
 			wantStatus: http.StatusOK,
 		},
 		{
@@ -62,11 +62,11 @@ func TestHandler_GetPrices(t *testing.T) {
 					Return(fetcher.PairResults{Ltps: []fetcher.LastTradedPrice{
 						{
 							Pair:   "BTC/USD",
-							Amount: "61000",
+							Amount: float64(61000),
 						},
 					}})
 			},
-			wantBody:   `{"ltp":[{"pair":"BTC/USD","amount":"61000"}]}`,
+			wantBody:   `{"ltp":[{"pair":"BTC/USD","amount":61000}]}`,
 			wantStatus: http.StatusOK,
 		},
 		{

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -77,9 +78,16 @@ func (k *Kraken) GetValues(pairs []Pair) PairResults {
 			continue
 		}
 
+		amount := value.(string)
+		fAmount, err := strconv.ParseFloat(amount, 64)
+		if err != nil {
+			logger.Error("cannot parse amount", "err", err, "pair", pair)
+			continue
+		}
+
 		res.Ltps = append(res.Ltps, LastTradedPrice{
 			Pair:   pair.Key,
-			Amount: value.(string),
+			Amount: fAmount,
 		})
 	}
 

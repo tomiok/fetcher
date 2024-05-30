@@ -56,7 +56,7 @@ func TestKrakenStorage_Get(t *testing.T) {
 			}
 
 			for _, value := range got.Ltps {
-				if value.Amount == "" {
+				if value.Amount == 0.0 {
 					t.FailNow()
 				}
 			}
